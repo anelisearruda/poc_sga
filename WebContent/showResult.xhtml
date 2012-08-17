@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>POC JSF - Resultado</title>
+</head>
+<f:view>
+	<h:head>
+	</h:head>
+	<h:body>
+	<h:form>
+		<h:outputText value="Cadastro de Mentirinha Realizado com Sucesso!"/>
+		
+		<br/>
+		<br/>
+		
+		<h:outputLabel value="Nome: " for="name"/>
+		<h:outputLabel id="name" value="#{userBean.user.name}"/>
+		
+		<br/>
+		<br/>
+		
+		<h:outputLabel value="Sexo: " for="gender"/>
+		<h:outputLabel id="gender" value="#{userBean.user.gender}"/>
+		
+		<br/>
+		<br/>
+		
+		<h:outputLabel value="Idade: " for="age"/>
+		<h:outputLabel id="age" value="#{userBean.user.age}"/>
+
+		<br/>
+		<br/>
+		
+		<h:outputLabel value="CPF: " for="cpf"/>
+		<h:outputLabel id="cpf" value="#{userBean.user.cpf}"/>
+
+
+		<br/>
+		<br/>
+		
+		<h:outputLabel value="Estado: " for="state"/>
+		<h:outputLabel id="state" value="#{userBean.user.state}"/>
+
+		<br/>
+		<br/>
+		
+		<h:outputLabel value="Cidade: " for="city"/>
+		<h:outputLabel id="city" value="#{userBean.user.city}"/>
+
+		<br/>
+		<br/>
+		
+		<h:outputLabel value="CEP: " for="zipCode"/>
+		<h:outputLabel id="zipCode" value="#{userBean.user.zipCode}"/>
+		
+		<br/>
+		<br/>
+		
+		<h:commandButton value="Voltar" action="#{userBean.goBack}" />
+		
+	</h:form>
+	</h:body>
+</f:view>
+</html>
