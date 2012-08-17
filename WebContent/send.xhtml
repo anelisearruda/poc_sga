@@ -24,7 +24,10 @@
 		<br/>
 		
 		<h:outputLabel value="Sexo" for="gender"/>
-		<h:inputText id="gender" value="#{userBean.user.gender}"/>
+		
+		<h:selectOneMenu id="gender" value="#{userBean.user.gender}"> 
+			<f:selectItems value="#{userBean.genderList}" />  
+		</h:selectOneMenu>
 		
 		<br/>
 		<br/>
@@ -38,18 +41,21 @@
 		<h:outputLabel value="CPF" for="cpf"/>
 		<h:inputText id="cpf" value="#{userBean.user.cpf}"/>
 
-
 		<br/>
 		<br/>
 		
 		<h:outputLabel value="Estado" for="state"/>
-		<h:inputText id="state" value="#{userBean.user.state}"/>
+		<h:selectOneMenu id="state" value="#{userBean.user.state}"> 
+			<f:selectItems value="#{userBean.stateList}" />  
+		</h:selectOneMenu>
 
 		<br/>
 		<br/>
 		
 		<h:outputLabel value="Cidade" for="city"/>
-		<h:inputText id="city" value="#{userBean.user.city}"/>
+		<h:selectOneMenu id="city" value="#{userBean.user.city}"> 
+			<f:selectItems value="#{userBean.cityList}" />  
+		</h:selectOneMenu>
 
 		<br/>
 		<br/>
