@@ -4,49 +4,58 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
-import br.com.sga.poc.model.User;
+import br.com.oi.sga.poc.model.User;
 
 @ManagedBean
 @SessionScoped
 public class UserBean {
 
 	private User user;
-	
+	private List<User> users;
+	private List<User> filteredUsers;
 	private List<SelectItem> genderList;
 	private List<SelectItem> stateList;
 	private List<SelectItem> cityList;
-	
+	private User[] selectedUser;
+
 	private String currentGender;
 
 	@PostConstruct
 	public void doInit() {
 		user = new User();
-		
+		users = new ArrayList<User>();
 		genderList = new ArrayList<SelectItem>();
-		genderList.add(new SelectItem("F","F"));
-		genderList.add(new SelectItem("M","F"));
-		
+		genderList.add(new SelectItem("F", "Feminino"));
+		genderList.add(new SelectItem("M", "Masculino"));
+
 		stateList = new ArrayList<SelectItem>();
-		stateList.add(new SelectItem("MG","MG"));
-		stateList.add(new SelectItem("RJ","RJ"));
-		stateList.add(new SelectItem("SP","SP"));
-		
+		stateList.add(new SelectItem("MG", "MG"));
+		stateList.add(new SelectItem("RJ", "RJ"));
+		stateList.add(new SelectItem("SP", "SP"));
+
 		cityList = new ArrayList<SelectItem>();
-		cityList.add(new SelectItem("Cidade 1","Cidade 1"));
-		cityList.add(new SelectItem("Cidade 2","Cidade 2"));
+		cityList.add(new SelectItem("Cidade 1", "Cidade 1"));
+		cityList.add(new SelectItem("Cidade 2", "Cidade 2"));
 	}
-	
-	public String send() {
-		//Do anything
+
+	public String toShowResult() {
+		users.add(user);
+		user = new User();
 		return "showResult";
 	}
-	
-	public String goBack() {
+
+	public String toSend() {
 		return "send";
+	}
+	
+	public String toIndex() {
+		return "index";
 	}
 
 	public User getUser() {
@@ -88,5 +97,40 @@ public class UserBean {
 	public void setCurrentGender(String currentGender) {
 		this.currentGender = currentGender;
 	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+	public User[] getSelectedUser() {
+		return selectedUser;
+	}
+
+	public void setSelectedUser(User[] selectedUser) {
+		this.selectedUser = selectedUser;
+	}
+
+	public List<User> getFilteredUsers() {
+		return filteredUsers;
+	}
+
+	public void setFilteredUsers(List<User> filteredUsers) {
+		this.filteredUsers = filteredUsers;
+	}
 	
+	public void deleteUser(){
+		users.remove(user);
+		user = new User();
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		facesContext.addMessage(null, new FacesMessage("Sucesso","Usuário excluído com sucesso!"));
+	}
+	
+	public void loadObjectToBeDeleted(User user){
+		this.user = user;
+	}
+
 }

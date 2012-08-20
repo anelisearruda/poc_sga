@@ -1,71 +1,74 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>POC JSF - Cadastro</title>
-</head>
-<f:view>
+<ui:composition xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:csrf="http://java.sun.com/jsf/composite/csrf">
 	<h:head>
+		<title>POC JSF - Cadastro</title>
 	</h:head>
-	<h:body>
-	<h:form>
-		<h:outputText value="Cadastro de Usuário Feliz e Saltitante"/>
-		
-		<br/>
-		<br/>
-		
-		<h:outputLabel value="Nome" for="name"/>
-		<h:inputText id="name" value="#{userBean.user.name}"/>
-		
-		<br/>
-		<br/>
-		
-		<h:outputLabel value="Sexo" for="gender"/>
-		
-		<h:selectOneMenu id="gender" value="#{userBean.user.gender}"> 
-			<f:selectItems value="#{userBean.genderList}" />  
-		</h:selectOneMenu>
-		
-		<br/>
-		<br/>
-		
-		<h:outputLabel value="Idade" for="age"/>
-		<h:inputText id="age" value="#{userBean.user.age}"/>
+	<f:view>
+		<h:body>
+			<h:form id="form">
+				<h2 class="title ui-widget-header ui-corner-all">
+					<h:outputText value="Cadastro de Usuário Feliz e Saltitante!" />
+				</h2>
 
-		<br/>
-		<br/>
-		
-		<h:outputLabel value="CPF" for="cpf"/>
-		<h:inputText id="cpf" value="#{userBean.user.cpf}"/>
+				<p:panel header="Cadastro" footer="by Equipe SGA">
+					<h:panelGrid columns="3">
+						<h:outputLabel value="Nome:" for="name" />
+						<p:inputText id="nome" value="#{userBean.user.name}" required="true">
+							<f:validateLength minimum="5" maximum="20" />
+						</p:inputText>
+						<p:message for="nome" style="color:red" />
 
-		<br/>
-		<br/>
-		
-		<h:outputLabel value="Estado" for="state"/>
-		<h:selectOneMenu id="state" value="#{userBean.user.state}"> 
-			<f:selectItems value="#{userBean.stateList}" />  
-		</h:selectOneMenu>
+						<h:outputLabel value="Sexo:" for="gender" />
+						<h:selectOneRadio id="gender" value="#{userBean.user.gender}"
+							required="true">
+							<f:selectItems value="#{userBean.genderList}" />
+						</h:selectOneRadio>
+						<p:message for="gender" style="color:red" />
 
-		<br/>
-		<br/>
-		
-		<h:outputLabel value="Cidade" for="city"/>
-		<h:selectOneMenu id="city" value="#{userBean.user.city}"> 
-			<f:selectItems value="#{userBean.cityList}" />  
-		</h:selectOneMenu>
+						<h:outputLabel value="Idade:" for="age" />
+						<p:inputText id="age" value="#{userBean.user.age}">
+							<f:validateLongRange minimum="18" maximum="65" />
+						</p:inputText>
+						<p:message for="age" style="color:red" />
 
-		<br/>
-		<br/>
-		
-		<h:outputLabel value="CEP" for="zipCode"/>
-		<h:inputText id="zipCode" value="#{userBean.user.zipCode}"/>
+						<h:outputLabel value="CPF:" for="cpf" />
+						<p:inputMask id="cpf" value="#{userBean.user.cpf}"
+							mask="999.999.999-99" required="true">
+							<f:validator validatorId="cpfValidator"></f:validator>
+						</p:inputMask>
+						<p:message for="cpf" style="color:red" />
 
-		<h:commandButton value="Ver resultado" action="#{userBean.send}" />
-		
-	</h:form>
-	</h:body>
-</f:view>
-</html>
+						<h:outputLabel value="Estado:" for="state" />
+						<h:selectOneMenu id="state" value="#{userBean.user.state}"
+							required="true">
+							<f:selectItem itemLabel="Selecione um estado!" itemValue="" />
+							<f:selectItems value="#{userBean.stateList}" />
+						</h:selectOneMenu>
+						<p:message for="state" style="color:red" />
+
+						<h:outputLabel value="Cidade:" for="city" />
+						<h:selectOneMenu id="city" value="#{userBean.user.city}" required="true">
+							<f:selectItem itemLabel="Selecione uma cidade!" itemValue="" />
+							<f:selectItems value="#{userBean.cityList}" />
+						</h:selectOneMenu>
+						<p:message for="city" style="color:red" />
+
+						<h:outputLabel value="CEP:" for="zipCode" />
+						<p:inputMask mask="99999-999" id="zipCode"
+							value="#{userBean.user.zipCode}" required="true" />
+						<p:message for="zipCode" style="color:red" />
+						
+						<br/>
+						
+						<p:commandButton value="Enviar" action="#{userBean.toShowResult}" ajax="false" />
+						<p:commandButton value="Índice" action="#{userBean.toIndex}" ajax="false" immediate="true"/>
+						
+					</h:panelGrid>
+				</p:panel>
+			</h:form>
+		</h:body>
+	</f:view>
+</ui:composition>

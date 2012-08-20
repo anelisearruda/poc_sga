@@ -1,68 +1,79 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<ui:composition xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<h:head>
 <title>POC JSF - Resultado</title>
-</head>
+</h:head>
 <f:view>
-	<h:head>
-	</h:head>
 	<h:body>
 	<h:form>
-		<h:outputText value="Cadastro de Mentirinha Realizado com Sucesso!"/>
 		
-		<br/>
-		<br/>
+		<h2 class="title ui-widget-header ui-corner-all">LISTAGEM</h2>
 		
-		<h:outputLabel value="Nome: " for="name"/>
-		<h:outputLabel id="name" value="#{userBean.user.name}"/>
-		
-		<br/>
-		<br/>
-		
-		<h:outputLabel value="Sexo: " for="gender"/>
-		<h:outputLabel id="gender" value="#{userBean.user.gender}"/>
-		
-		<br/>
-		<br/>
-		
-		<h:outputLabel value="Idade: " for="age"/>
-		<h:outputLabel id="age" value="#{userBean.user.age}"/>
+		<p:dataTable var="user" value="#{userBean.users}" rowKey="#{user.name}" paginator="true" rows="10"  
+                selection="#{userBean.selectedUser}" filteredValue="#{userBean.filteredUsers}" id="usersTable">  
+  
+         
+         <br/>
+        <f:facet name="header">  
+          Lista de Usuários   
+        </f:facet>  
+        <p:column headerText="Nome" sortBy="#{user.name}" filterBy="#{user.name}" id="name">
+			#{user.name}
+        </p:column>  
+  
+        <p:column headerText="Sexo" sortBy="#{user.gender}" filterBy="#{user.gender}" id="gender">  
+			#{user.gender}  
+        </p:column>  
+  
+        <p:column headerText="Idade" sortBy="#{user.age}" filterBy="#{user.age}" id="age">  
+			#{user.age}        
+        </p:column>  
+  
+        <p:column headerText="CPF" sortBy="#{user.cpf}" filterBy="#{user.cpf}" id="cpf">
+			 #{user.cpf}  
+        </p:column>  
+        
+        <p:column headerText="Estado" sortBy="#{user.state}" filterBy="#{user.state}" id="state">
+ 			#{user.state}    
+        </p:column>  
+        
+        <p:column headerText="Cidade" sortBy="#{user.city}" filterBy="#{user.city}" id="city">
+  			#{user.city}            
+        </p:column>
+        
+        <p:column headerText="CEP" sortBy="#{user.zipCode}" filterBy="#{user.zipCode}" id="zipCode">  
+  			 #{user.zipCode} 
+        </p:column>  
+        
+        <p:column headerText="Exclusão">
+        	<p:commandLink id="selectButton" onclick="confirmation.show()" actionListener="#{userBean.loadObjectToBeDeleted(user)}"   title="Excluir">
+        		<h:graphicImage value="images/erase.ico" style="border:none"/>
+        	</p:commandLink>
+        </p:column>
 
-		<br/>
-		<br/>
-		
-		<h:outputLabel value="CPF: " for="cpf"/>
-		<h:outputLabel id="cpf" value="#{userBean.user.cpf}"/>
-
-
-		<br/>
-		<br/>
-		
-		<h:outputLabel value="Estado: " for="state"/>
-		<h:outputLabel id="state" value="#{userBean.user.state}"/>
-
-		<br/>
-		<br/>
-		
-		<h:outputLabel value="Cidade: " for="city"/>
-		<h:outputLabel id="city" value="#{userBean.user.city}"/>
-
-		<br/>
-		<br/>
-		
-		<h:outputLabel value="CEP: " for="zipCode"/>
-		<h:outputLabel id="zipCode" value="#{userBean.user.zipCode}"/>
-		
-		<br/>
-		<br/>
-		
-		<h:commandButton value="Voltar" action="#{userBean.goBack}" />
-		
+  
+    </p:dataTable> <br/>
+    
+    <p:confirmDialog id="confirmDialog" message="Deseja realmente excluir este cara?"  
+                header="Exclusão de Usuário" severity="alert" widgetVar="confirmation">  
+                  
+        <p:commandButton id="confirm" value="Sim" oncomplete="confirmation.hide()"  
+                    actionListener="#{userBean.deleteUser}" update="usersTable,messages"/>  
+        <p:commandButton id="decline" value="Não" onclick="confirmation.hide()" type="button" />   
+                  
+    </p:confirmDialog>  
+    
+    <p:growl id="messages" showDetail="true" sticky="true" /> 
+    
+    <br/>
+    
+    <p:commandButton value="Novo usuário" action="#{userBean.toSend}" ajax="false"/> 
+    <p:commandButton value="Índice" action="#{userBean.toIndex}" ajax="false" />
+    
+    
 	</h:form>
 	</h:body>
 </f:view>
-</html>
+</ui:composition>
