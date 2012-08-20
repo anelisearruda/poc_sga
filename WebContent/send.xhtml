@@ -2,73 +2,72 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.prime.com.tr/ui"
-	xmlns:csrf="http://java.sun.com/jsf/composite/csrf">
-	<h:head>
-		<title>POC JSF - Cadastro</title>
-	</h:head>
-	<f:view>
-		<h:body>
-			<h:form id="form">
-				<h2 class="title ui-widget-header ui-corner-all">
-					<h:outputText value="Cadastro de Usuário Feliz e Saltitante!" />
-				</h2>
+	template="WEB-INF/templates/template.xhtml">
 
-				<p:panel header="Cadastro" footer="by Equipe SGA">
-					<h:panelGrid columns="3">
-						<h:outputLabel value="Nome:" for="name" />
-						<p:inputText id="nome" value="#{userBean.user.name}" required="true">
-							<f:validateLength minimum="5" maximum="20" />
-						</p:inputText>
-						<p:message for="nome" style="color:red" />
+	<ui:define name="header">Cadastro de Usuário Feliz e Saltitante!</ui:define>
 
-						<h:outputLabel value="Sexo:" for="gender" />
-						<h:selectOneRadio id="gender" value="#{userBean.user.gender}"
-							required="true">
-							<f:selectItems value="#{userBean.genderList}" />
-						</h:selectOneRadio>
-						<p:message for="gender" style="color:red" />
+	<ui:define name="contents">
+		<h:form id="form">
 
-						<h:outputLabel value="Idade:" for="age" />
-						<p:inputText id="age" value="#{userBean.user.age}">
-							<f:validateLongRange minimum="18" maximum="65" />
-						</p:inputText>
-						<p:message for="age" style="color:red" />
+			<p:panel header="Cadastro" footer="by Equipe SGA">
+				<h:panelGrid columns="3">
+					<h:outputLabel value="Nome:" for="name" />
+					<p:inputText id="nome" value="#{userBean.user.name}"
+						required="true">
+						<f:validateLength minimum="5" maximum="20" />
+					</p:inputText>
+					<p:message for="nome" style="color:red" />
 
-						<h:outputLabel value="CPF:" for="cpf" />
-						<p:inputMask id="cpf" value="#{userBean.user.cpf}"
-							mask="999.999.999-99" required="true">
-							<f:validator validatorId="cpfValidator"></f:validator>
-						</p:inputMask>
-						<p:message for="cpf" style="color:red" />
+					<h:outputLabel value="Sexo:" for="gender" />
+					<h:selectOneRadio id="gender" value="#{userBean.user.gender}"
+						required="true">
+						<f:selectItems value="#{userBean.genderList}" />
+					</h:selectOneRadio>
+					<p:message for="gender" style="color:red" />
 
-						<h:outputLabel value="Estado:" for="state" />
-						<h:selectOneMenu id="state" value="#{userBean.user.state}"
-							required="true">
-							<f:selectItem itemLabel="Selecione um estado!" itemValue="" />
-							<f:selectItems value="#{userBean.stateList}" />
-						</h:selectOneMenu>
-						<p:message for="state" style="color:red" />
+					<h:outputLabel value="Idade:" for="age" />
+					<p:inputText id="age" value="#{userBean.user.age}">
+						<f:validateLongRange minimum="18" maximum="65" />
+					</p:inputText>
+					<p:message for="age" style="color:red" />
 
-						<h:outputLabel value="Cidade:" for="city" />
-						<h:selectOneMenu id="city" value="#{userBean.user.city}" required="true">
-							<f:selectItem itemLabel="Selecione uma cidade!" itemValue="" />
-							<f:selectItems value="#{userBean.cityList}" />
-						</h:selectOneMenu>
-						<p:message for="city" style="color:red" />
+					<h:outputLabel value="CPF:" for="cpf" />
+					<p:inputMask id="cpf" value="#{userBean.user.cpf}"
+						mask="999.999.999-99" required="true">
+						<f:validator validatorId="cpfValidator"></f:validator>
+					</p:inputMask>
+					<p:message for="cpf" style="color:red" />
 
-						<h:outputLabel value="CEP:" for="zipCode" />
-						<p:inputMask mask="99999-999" id="zipCode"
-							value="#{userBean.user.zipCode}" required="true" />
-						<p:message for="zipCode" style="color:red" />
-						
-						<br/>
-						
-						<p:commandButton value="Enviar" action="#{userBean.toShowResult}" ajax="false" />
-						<p:commandButton value="Índice" action="#{userBean.toIndex}" ajax="false" immediate="true"/>
-						
-					</h:panelGrid>
-				</p:panel>
-			</h:form>
-		</h:body>
-	</f:view>
+					<h:outputLabel value="Estado:" for="state" />
+					<h:selectOneMenu id="state" value="#{userBean.user.state}"
+						required="true">
+						<f:selectItem itemLabel="Selecione um estado!" itemValue="" />
+						<f:selectItems value="#{userBean.stateList}" />
+					</h:selectOneMenu>
+					<p:message for="state" style="color:red" />
+
+					<h:outputLabel value="Cidade:" for="city" />
+					<h:selectOneMenu id="city" value="#{userBean.user.city}"
+						required="true">
+						<f:selectItem itemLabel="Selecione uma cidade!" itemValue="" />
+						<f:selectItems value="#{userBean.cityList}" />
+					</h:selectOneMenu>
+					<p:message for="city" style="color:red" />
+
+					<h:outputLabel value="CEP:" for="zipCode" />
+					<p:inputMask mask="99999-999" id="zipCode"
+						value="#{userBean.user.zipCode}" required="true" />
+					<p:message for="zipCode" style="color:red" />
+
+					<br />
+
+					<p:commandButton value="Enviar" action="#{userBean.toShowResult}"
+						ajax="false" />
+					<p:commandButton value="Índice" action="#{userBean.toIndex}"
+						ajax="false" immediate="true" />
+
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+	</ui:define>
 </ui:composition>
