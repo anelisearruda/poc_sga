@@ -44,7 +44,7 @@
         </p:column>
         
         <p:column headerText="CEP" sortBy="#{user.zipCode}" filterBy="#{user.zipCode}" id="zipCode">  
-  			 #{user.zipCode} 
+  			 <h:outputText value="#{user.zipCode}" converter="#{cepConverter}"/>
         </p:column>  
         
         <p:column headerText="Exclusão">
@@ -56,7 +56,7 @@
   
     </p:dataTable> <br/>
     
-    <p:confirmDialog id="confirmDialog" message="Deseja realmente excluir este cara?"  
+    <p:confirmDialog id="confirmDialog" message="Deseja realmente excluir este cara?"
                 header="Exclusão de Usuário" severity="alert" widgetVar="confirmation">  
                   
         <p:commandButton id="confirm" value="Sim" oncomplete="confirmation.hide()"  

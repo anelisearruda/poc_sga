@@ -57,8 +57,9 @@
 						<p:message for="city" style="color:red" />
 
 						<h:outputLabel value="CEP:" for="zipCode" />
-						<p:inputMask mask="99999-999" id="zipCode"
-							value="#{userBean.user.zipCode}" required="true" />
+						<p:inputMask mask="99999-999" id="zipCode" value="#{userBean.user.zipCode}" required="true">
+							<f:converter converterId="cepConverter" />
+						</p:inputMask>	
 						<p:message for="zipCode" style="color:red" />
 						
 						<br/>
