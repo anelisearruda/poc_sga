@@ -17,42 +17,42 @@
 
 				<br />
 				<f:facet name="header">  
-          Lista de Usuários   
-        </f:facet>
+		          Lista de Usuários   
+		        </f:facet>
 				<p:column headerText="Nome" sortBy="#{user.name}"
 					filterBy="#{user.name}" id="name">
-			#{user.name}
-        </p:column>
+					#{user.name}
+		        </p:column>
 
 				<p:column headerText="Sexo" sortBy="#{user.gender}"
 					filterBy="#{user.gender}" id="gender">  
-			#{user.gender}  
-        </p:column>
+					#{user.gender}  
+		        </p:column>
 
 				<p:column headerText="Idade" sortBy="#{user.age}"
 					filterBy="#{user.age}" id="age">  
-			#{user.age}        
-        </p:column>
+					#{user.age}        
+		        </p:column>
 
 				<p:column headerText="CPF" sortBy="#{user.cpf}"
 					filterBy="#{user.cpf}" id="cpf">
-			 #{user.cpf}  
-        </p:column>
+					 #{user.cpf}  
+		        </p:column>
 
 				<p:column headerText="Estado" sortBy="#{user.state}"
 					filterBy="#{user.state}" id="state">
- 			#{user.state}    
-        </p:column>
+		 			#{user.state}    
+		        </p:column>
 
 				<p:column headerText="Cidade" sortBy="#{user.city}"
 					filterBy="#{user.city}" id="city">
-  			#{user.city}            
-        </p:column>
+		  			#{user.city}            
+		        </p:column>
 
 				<p:column headerText="CEP" sortBy="#{user.zipCode}"
 					filterBy="#{user.zipCode}" id="zipCode">  
-  			 #{user.zipCode} 
-        </p:column>
+		  			 #{user.zipCode} 
+		        </p:column>
 
 				<p:column headerText="Exclusão">
 					<p:commandLink id="selectButton" onclick="confirmation.show()"
@@ -88,7 +88,6 @@
 				ajax="false" />
 			<p:commandButton value="Índice" action="#{userBean.toIndex}"
 				ajax="false" />
-
 
 		</h:form>
 
