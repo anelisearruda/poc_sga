@@ -12,8 +12,7 @@
 		<h2 class="title ui-widget-header ui-corner-all">LISTAGEM</h2>
 		
 		<p:dataTable var="user" value="#{userBean.users}" rowKey="#{user.name}" paginator="true" rows="10"  
-                selection="#{userBean.selectedUser}" filteredValue="#{userBean.filteredUsers}" id="usersTable">  
-  
+                filteredValue="#{userBean.filteredUsers}" id="usersTable">  
          
          <br/>
         <f:facet name="header">  
@@ -44,7 +43,9 @@
         </p:column>
         
         <p:column headerText="CEP" sortBy="#{user.zipCode}" filterBy="#{user.zipCode}" id="zipCode">  
-  			 <h:outputText value="#{user.zipCode}" converter="#{cepConverter}"/>
+  			 <h:outputText value="#{user.zipCode}">
+     			<f:converter converterId="cepConverter" />
+			</h:outputText>
         </p:column>  
         
         <p:column headerText="Exclusão">
@@ -52,7 +53,6 @@
         		<h:graphicImage value="images/erase.ico" style="border:none"/>
         	</p:commandLink>
         </p:column>
-
   
     </p:dataTable> <br/>
     

@@ -8,10 +8,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-import br.com.oi.sga.poc.converter.CEPConverter;
 import br.com.oi.sga.poc.model.User;
 
 @ManagedBean
@@ -24,12 +22,9 @@ public class UserBean {
 	private List<SelectItem> genderList;
 	private List<SelectItem> stateList;
 	private List<SelectItem> cityList;
-	private User[] selectedUser;
 
 	private String currentGender;
 	
-	private CEPConverter cepConverter;
-
 	@PostConstruct
 	public void doInit() {
 		user = new User();
@@ -46,8 +41,6 @@ public class UserBean {
 		cityList = new ArrayList<SelectItem>();
 		cityList.add(new SelectItem("Cidade 1", "Cidade 1"));
 		cityList.add(new SelectItem("Cidade 2", "Cidade 2"));
-		
-		cepConverter = new CEPConverter();
 	}
 
 	public String toShowResult() {
@@ -112,14 +105,6 @@ public class UserBean {
 		this.users = users;
 	}
 
-	public User[] getSelectedUser() {
-		return selectedUser;
-	}
-
-	public void setSelectedUser(User[] selectedUser) {
-		this.selectedUser = selectedUser;
-	}
-
 	public List<User> getFilteredUsers() {
 		return filteredUsers;
 	}
@@ -138,10 +123,5 @@ public class UserBean {
 	public void loadObjectToBeDeleted(User user){
 		this.user = user;
 	}
-
-//	public CEPConverter getCepConverter() {
-//		cepConverter.setPattern(new ListDataModel<User>(users).getRowData().getPattern());
-//		return cepConverter;
-//	}
 
 }
