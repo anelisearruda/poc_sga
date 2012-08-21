@@ -1,26 +1,22 @@
-<ui:composition xmlns:h="http://java.sun.com/jsf/html"
+<ui:composition 
+	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.prime.com.tr/ui"
-	xmlns:csrf="http://java.sun.com/jsf/composite/csrf">
-	<h:head>
-		<title>POC JSF - Cadastro</title>
-	</h:head>
-	<f:view>
-		<h:body>
-			<h:form id="form">
-				<h2 class="title ui-widget-header ui-corner-all">
-					<h:outputText value="PoC SGA - JAVASERVER FACES + PRIMEFACES" />
-				</h2>
+	template="WEB-INF/templates/template.xhtml">
 
-				<p:panel header="Índice" footer="by Equipe SGA">
-					<h:panelGrid columns="1">
-						<p:commandLink value="Cadastro de Novo Usuário" action="#{userBean.toSend}" ajax="false" />
-						
-						<p:commandLink value="Tabela de Usuários" action="#{userBean.toShowResult}" ajax="false" />
-					</h:panelGrid>
-				</p:panel>
-			</h:form>
-		</h:body>
-	</f:view>
+	<ui:define name="contents">
+
+		<h:form id="form">
+
+			<p:panel header="Índice" footer="by Equipe SGA">
+				<h:panelGrid columns="1">
+					<h:link value="Cadastro de Novo Usuário" outcome="/send.xhtml" />
+					<h:link value="Tabela de Usuários" outcome="/showResult.xhtml" />
+				</h:panelGrid>
+			</p:panel>
+
+		</h:form>
+
+	</ui:define>
 </ui:composition>

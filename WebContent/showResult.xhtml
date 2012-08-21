@@ -1,79 +1,77 @@
 <ui:composition xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.prime.com.tr/ui">
-<h:head>
-<title>POC JSF - Resultado</title>
-</h:head>
-<f:view>
-	<h:body>
-	<h:form>
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="WEB-INF/templates/template.xhtml">
+
+	<ui:define name="header">LISTAGEM</ui:define>
+
+	<ui:define name="contents">
+
+		<h:form id="form">
+
+			<p:dataTable var="user" value="#{userBean.users}"
+				rowKey="#{user.name}" paginator="true" rows="10"
+				filteredValue="#{userBean.filteredUsers}" id="usersTable">
+
+				<br />
+				<f:facet name="header">Lista de Usuários</f:facet>
+				
+				<p:column headerText="Nome" sortBy="#{user.name}"
+					filterBy="#{user.name}" id="name">
+					#{user.name}
+        		</p:column>
+
+				<p:column headerText="Sexo" sortBy="#{user.gender}"
+					filterBy="#{user.gender}" id="gender">  
+					#{user.gender}  
+		        </p:column>
 		
-		<h2 class="title ui-widget-header ui-corner-all">LISTAGEM</h2>
+						<p:column headerText="Idade" sortBy="#{user.age}"
+							filterBy="#{user.age}" id="age">  
+					#{user.age}        
+		        </p:column>
 		
-		<p:dataTable var="user" value="#{userBean.users}" rowKey="#{user.name}" paginator="true" rows="10"  
-                filteredValue="#{userBean.filteredUsers}" id="usersTable">  
-         
-         <br/>
-        <f:facet name="header">  
-          Lista de Usuários   
-        </f:facet>  
-        <p:column headerText="Nome" sortBy="#{user.name}" filterBy="#{user.name}" id="name">
-			#{user.name}
-        </p:column>  
-  
-        <p:column headerText="Sexo" sortBy="#{user.gender}" filterBy="#{user.gender}" id="gender">  
-			#{user.gender}  
-        </p:column>  
-  
-        <p:column headerText="Idade" sortBy="#{user.age}" filterBy="#{user.age}" id="age">  
-			#{user.age}        
-        </p:column>  
-  
-        <p:column headerText="CPF" sortBy="#{user.cpf}" filterBy="#{user.cpf}" id="cpf">
-			 #{user.cpf}  
-        </p:column>  
+						<p:column headerText="CPF" sortBy="#{user.cpf}"
+							filterBy="#{user.cpf}" id="cpf">
+					 #{user.cpf}  
+		        </p:column>
+		
+						<p:column headerText="Estado" sortBy="#{user.state}"
+							filterBy="#{user.state}" id="state">
+		 			#{user.state}    
+		        </p:column>
         
-        <p:column headerText="Estado" sortBy="#{user.state}" filterBy="#{user.state}" id="state">
- 			#{user.state}    
-        </p:column>  
-        
-        <p:column headerText="Cidade" sortBy="#{user.city}" filterBy="#{user.city}" id="city">
-  			#{user.city}            
-        </p:column>
-        
-        <p:column headerText="CEP" sortBy="#{user.zipCode}" filterBy="#{user.zipCode}" id="zipCode">  
-  			 <h:outputText value="#{user.zipCode}">
-     			<f:converter converterId="cepConverter" />
-			</h:outputText>
-        </p:column>  
-        
-        <p:column headerText="Exclusão">
-        	<p:commandLink id="selectButton" onclick="confirmation.show()" actionListener="#{userBean.loadObjectToBeDeleted(user)}"   title="Excluir">
-        		<h:graphicImage value="images/erase.ico" style="border:none"/>
-        	</p:commandLink>
-        </p:column>
-  
-    </p:dataTable> <br/>
-    
-    <p:confirmDialog id="confirmDialog" message="Deseja realmente excluir este cara?"
-                header="Exclusão de Usuário" severity="alert" widgetVar="confirmation">  
-                  
-        <p:commandButton id="confirm" value="Sim" oncomplete="confirmation.hide()"  
-                    actionListener="#{userBean.deleteUser}" update="usersTable,messages"/>  
-        <p:commandButton id="decline" value="Não" onclick="confirmation.hide()" type="button" />   
-                  
-    </p:confirmDialog>  
-    
-    <p:growl id="messages" showDetail="true" sticky="true" /> 
-    
-    <br/>
-    
-    <p:commandButton value="Novo usuário" action="#{userBean.toSend}" ajax="false"/> 
-    <p:commandButton value="Índice" action="#{userBean.toIndex}" ajax="false" />
-    
-    
-	</h:form>
-	</h:body>
-</f:view>
+		        <p:column headerText="CEP" sortBy="#{user.zipCode}" filterBy="#{user.zipCode}" id="zipCode">  
+		  			 <h:outputText value="#{user.zipCode}">
+		     			<f:converter converterId="cepConverter" />
+					</h:outputText>
+		        </p:column>  
+		        
+		        <p:column headerText="Exclusão">
+		        	<p:commandLink id="selectButton" onclick="confirmation.show()" actionListener="#{userBean.loadObjectToBeDeleted(user)}"   title="Excluir">
+		        		<h:graphicImage value="images/erase.ico" style="border:none"/>
+		        	</p:commandLink>
+		        </p:column>
+		  
+		    </p:dataTable> <br/>
+		    
+		    <p:confirmDialog id="confirmDialog" message="Deseja realmente excluir este cara?"
+		                header="Exclusão de Usuário" severity="alert" widgetVar="confirmation">  
+		                  
+		        <p:commandButton id="confirm" value="Sim" oncomplete="confirmation.hide()"  
+		                    actionListener="#{userBean.deleteUser}" update="usersTable,messages"/>  
+		        <p:commandButton id="decline" value="Não" onclick="confirmation.hide()" type="button" />   
+		                  
+		    </p:confirmDialog>  
+		    
+		    <p:growl id="messages" showDetail="true" sticky="true" /> 
+		    
+		    <br/>
+		    
+		    <p:commandButton value="Novo usuário" action="#{userBean.toSend}" ajax="false"/> 
+		    <p:commandButton value="Índice" action="#{userBean.toIndex}" ajax="false" />
+		
+		</h:form>
+	</ui:define>
 </ui:composition>

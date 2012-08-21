@@ -27,6 +27,7 @@ public class UserBean {
 	
 	@PostConstruct
 	public void doInit() {
+		
 		user = new User();
 		users = new ArrayList<User>();
 		genderList = new ArrayList<SelectItem>();
@@ -52,7 +53,7 @@ public class UserBean {
 	public String toSend() {
 		return "send";
 	}
-	
+
 	public String toIndex() {
 		return "index";
 	}
@@ -112,15 +113,16 @@ public class UserBean {
 	public void setFilteredUsers(List<User> filteredUsers) {
 		this.filteredUsers = filteredUsers;
 	}
-	
-	public void deleteUser(){
+
+	public void deleteUser() {
 		users.remove(user);
 		user = new User();
 		FacesContext facesContext = FacesContext.getCurrentInstance();
-		facesContext.addMessage(null, new FacesMessage("Sucesso","Usuário excluído com sucesso!"));
+		facesContext.addMessage(null, new FacesMessage("Sucesso",
+				"Usuário excluído com sucesso!"));
 	}
-	
-	public void loadObjectToBeDeleted(User user){
+
+	public void loadObjectToBeDeleted(User user) {
 		this.user = user;
 	}
 
