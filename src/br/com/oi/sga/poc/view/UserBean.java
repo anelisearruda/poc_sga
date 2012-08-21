@@ -23,8 +23,6 @@ public class UserBean {
 	private List<SelectItem> stateList;
 	private List<SelectItem> cityList;
 
-	private String currentGender;
-	
 	@PostConstruct
 	public void doInit() {
 		
@@ -88,14 +86,6 @@ public class UserBean {
 
 	public void setCityList(List<SelectItem> cityList) {
 		this.cityList = cityList;
-	}
-
-	public String getCurrentGender() {
-		return currentGender;
-	}
-
-	public void setCurrentGender(String currentGender) {
-		this.currentGender = currentGender;
 	}
 
 	public List<User> getUsers() {
